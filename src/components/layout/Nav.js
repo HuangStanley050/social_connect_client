@@ -1,12 +1,13 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Navbar = props => {
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
       <div className="container">
-        <a className="navbar-brand" href="landing.html">
+        <NavLink className="navbar-brand" exact to="/">
           SocialConnector
-        </a>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -27,14 +28,14 @@ const Navbar = props => {
 
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a className="nav-link" href="register.html">
+              <NavLink className="nav-link" to="/register">
                 Sign Up
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="login.html">
+              <NavLink className="nav-link" to="/login">
                 Login
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>
