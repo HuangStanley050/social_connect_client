@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/layout/Nav";
 import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
@@ -13,11 +13,13 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <Route exact path="/" component={Landing} />
-        <div className="container">
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-        </div>
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <div className="container">
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+          </div>
+        </Switch>
         <Footer />
       </div>
     );
