@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as auth from "../../store/actions/auth";
 
 class Register extends Component {
   state = {
@@ -21,7 +23,8 @@ class Register extends Component {
       password: this.state.password,
       password2: this.state.password2
     };
-    console.log(newUser);
+    //console.log(newUser);
+    this.props.register(newUser);
   };
 
   render() {
@@ -89,5 +92,17 @@ class Register extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {};
+};
 
-export default Register;
+const mapDispatchToProps = dispatch => {
+  return {
+    register: newUser => dispatch(auth.register(newUser))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Register);

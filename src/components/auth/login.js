@@ -10,7 +10,8 @@ class Login extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    const user = { email: this.state.email, password: this.state.password };
+    console.log(user);
   };
   render() {
     return (
