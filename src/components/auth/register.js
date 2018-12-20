@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as auth from "../../store/actions/auth";
+import classnames from "classnames";
 
 class Register extends Component {
   state = {
@@ -28,6 +29,22 @@ class Register extends Component {
   };
 
   render() {
+    let name_error = null;
+    let email_error = null;
+    let password_error = null;
+    let password2_error = null;
+    if (this.props.errors) {
+      if (this.props.errors.name) name_error = this.props.errors.name;
+      if (this.props.errors.email) email_error = this.props.errors.email;
+      if (this.props.errors.password)
+        password_error = this.props.errors.password;
+      if (this.props.errors.password2)
+        password2_error = this.props.errors.password2;
+    }
+    console.log("name", name_error);
+    console.log("email", email_error);
+    console.log("password", password_error);
+    console.log("password2", password2_error);
     return (
       <div className="register">
         <div className="container">
@@ -41,13 +58,17 @@ class Register extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid": name_error
+                    })}
                     placeholder="Name"
                     name="name"
                     value={this.state.name}
-                    required
                     onChange={this.handleInput}
                   />
+                  {name_error ? (
+                    <div className="invalid-feedback">{name_error}</div>
+                  ) : null}
                 </div>
                 <div className="form-group">
                   <input
@@ -93,7 +114,9 @@ class Register extends Component {
   }
 }
 const mapStateToProps = state => {
-  return {};
+  return {
+    errors: state.error.errors
+  };
 };
 
 const mapDispatchToProps = dispatch => {
