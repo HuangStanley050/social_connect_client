@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import * as auth from "../../store/actions/auth";
 import classnames from "classnames";
 
@@ -29,6 +30,7 @@ class Register extends Component {
   };
 
   render() {
+    let redirect = null;
     let name_error = null;
     let email_error = null;
     let password_error = null;
@@ -41,13 +43,13 @@ class Register extends Component {
       if (this.props.errors.password2)
         password2_error = this.props.errors.password2;
     }
-    /*console.log("name", name_error);
-    console.log("email", email_error);
-    console.log("password", password_error);
-    console.log("password2", password2_error);
-    */
+    if (this.props.registered) {
+      redirect = <Redirect to="/login" />;
+    }
+
     return (
       <div className="register">
+        {redirect}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -55,7 +57,7 @@ class Register extends Component {
               <p className="lead text-center">
                 Create your SocialConnect account
               </p>
-              <form onSubmit={this.handleSubmit}>
+              <form noValidate onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <input
                     type="text"
@@ -131,7 +133,8 @@ class Register extends Component {
 }
 const mapStateToProps = state => {
   return {
-    errors: state.error.errors
+    errors: state.error.errors,
+    registered: state.auth.isAuthenticated
   };
 };
 

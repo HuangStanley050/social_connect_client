@@ -2,7 +2,8 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   isAuthenticated: false,
-  loading: false
+  loading: false,
+  user: {}
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,7 +16,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.REGISTER_SUCCESS:
       return {
         ...state,
-        isAuthenticate: true,
+        isAuthenticated: true,
         loading: false
       };
     case actionTypes.REGISTER_FAIL:

@@ -9,6 +9,12 @@ export const registerStart = () => {
   };
 };
 
+export const registerSuccess = () => {
+  return {
+    type: actionTypes.REGISTER_SUCCESS
+  };
+};
+
 export const register = newUser => {
   return dispatch => {
     dispatch(registerStart());
@@ -18,7 +24,7 @@ export const register = newUser => {
         "https://github-site-practice-infamousgodhand.c9users.io:8081/api/users/register",
         newUser
       )
-      .then(res => console.log(res.data))
+      .then(res => dispatch(registerSuccess()))
       .catch(err => {
         console.log(err.response.data);
         dispatch(registerFail());
