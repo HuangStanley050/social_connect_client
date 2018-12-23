@@ -79,7 +79,7 @@ export const login = userData => {
         dispatch(login_success(decoded));
       })
       .catch(err => {
-        console.log(err.response.data);
+        //console.log(err.response.data);
         dispatch(login_fail());
         dispatch(error(err.response.data));
       });
