@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as auth from "../../store/actions/auth";
 
 class Login extends Component {
   state = {
@@ -11,7 +13,8 @@ class Login extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const user = { email: this.state.email, password: this.state.password };
-    console.log(user);
+    //console.log(user);
+    this.props.login(user);
   };
   render() {
     return (
@@ -54,4 +57,13 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => {
+  return {
+    login: userData => dispatch(auth.login(userData))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Login);

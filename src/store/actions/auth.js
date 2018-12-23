@@ -1,6 +1,7 @@
 import * as actionTypes from "./actionTypes.js";
 import { error } from "./errors";
 import axios from "axios";
+/* global localStorage */
 
 export const registerStart = () => {
   //console.log("register");
@@ -12,6 +13,12 @@ export const registerStart = () => {
 export const registerSuccess = () => {
   return {
     type: actionTypes.REGISTER_SUCCESS
+  };
+};
+
+export const registerFail = () => {
+  return {
+    type: actionTypes.REGISTER_FAIL
   };
 };
 
@@ -33,8 +40,42 @@ export const register = newUser => {
   };
 };
 
-export const registerFail = () => {
+export const login_start = () => {
   return {
-    type: actionTypes.REGISTER_FAIL
+    type: actionTypes.LOGIN_START
+  };
+};
+
+export const login_fail = () => {
+  return {
+    type: actionTypes.LOGIN_FAIL
+  };
+};
+
+export const login_success = () => {
+  return {
+    type: actionTypes.LOGIN_SUCCESS
+  };
+};
+
+export const login = userData => {
+  return dispatch => {
+    //console.log(userData);
+    dispatch(login_start());
+    axios
+      .post(
+        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/users/login",
+        userData
+      )
+      .then(res => {
+        const { token } = res.data;
+        localStorage.setItem("jwtToken", token);
+        dispatch(login_success());
+      })
+      .catch(err => {
+        console.log(err.response.data);
+        dispatch(login_fail());
+        dispatch(error(err.response.data));
+      });
   };
 };
