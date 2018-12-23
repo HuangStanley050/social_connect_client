@@ -1,6 +1,8 @@
 import * as actionTypes from "./actionTypes.js";
 import { error } from "./errors";
 import axios from "axios";
+import setAuthToken from "../../utils/setAuthToken";
+import jwt_decode from "jwt-decode";
 /* global localStorage */
 
 export const registerStart = () => {
@@ -52,9 +54,10 @@ export const login_fail = () => {
   };
 };
 
-export const login_success = () => {
+export const login_success = userData => {
   return {
-    type: actionTypes.LOGIN_SUCCESS
+    type: actionTypes.LOGIN_SUCCESS,
+    payload: userData
   };
 };
 
@@ -70,7 +73,10 @@ export const login = userData => {
       .then(res => {
         const { token } = res.data;
         localStorage.setItem("jwtToken", token);
-        dispatch(login_success());
+        setAuthToken(token);
+        const decoded = jwt_decode(token);
+        //console.log(decoded);
+        dispatch(login_success(decoded));
       })
       .catch(err => {
         console.log(err.response.data);

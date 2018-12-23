@@ -33,7 +33,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        loading: false
+        loading: false,
+        user: { ...action.payload }
       };
     case actionTypes.LOGIN_FAIL:
       return {
