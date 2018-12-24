@@ -40,7 +40,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: false,
-        loading: false
+        loading: false,
+        user: {}
       };
     default:
       return state;

@@ -1,7 +1,43 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { logout } from "../../store/actions/auth";
 
 const Navbar = props => {
+  const { isAuthenticated, user } = props.auth;
+
+  const authLink = (
+    <ul className="navbar-nav ml-auto">
+      <li className="nav-item">
+        <NavLink to="/" className="nav-link" onClick={props.logout}>
+          <img
+            className="rounded-circle"
+            style={{ width: "25px", marginRight: "5px" }}
+            src={user.avatar}
+            alt={user.name}
+            title="You Must have a gravatar connected to your email account to display an image"
+          />
+          Logout
+        </NavLink>
+      </li>
+    </ul>
+  );
+
+  const guestLink = (
+    <ul className="navbar-nav ml-auto">
+      <li className="nav-item">
+        <NavLink className="nav-link" to="/register">
+          Sign Up
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className="nav-link" to="/login">
+          Login
+        </NavLink>
+      </li>
+    </ul>
+  );
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
       <div className="container">
@@ -25,23 +61,24 @@ const Navbar = props => {
               </a>
             </li>
           </ul>
-
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/register">
-                Sign Up
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/login">
-                Login
-              </NavLink>
-            </li>
-          </ul>
+          {isAuthenticated && user ? authLink : guestLink}
         </div>
       </div>
     </nav>
   );
 };
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
 
-export default Navbar;
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(logout())
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navbar);

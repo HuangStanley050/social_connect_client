@@ -85,3 +85,11 @@ export const login = userData => {
       });
   };
 };
+
+export const logout = () => {
+  return dispatch => {
+    localStorage.removeItem("jwtToken");
+    setAuthToken(false);
+    dispatch(login_fail());
+  };
+};
