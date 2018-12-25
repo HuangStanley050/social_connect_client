@@ -10,13 +10,15 @@ const Navbar = props => {
     <ul className="navbar-nav ml-auto">
       <li className="nav-item">
         <NavLink to="/" className="nav-link" onClick={props.logout}>
-          <img
-            className="rounded-circle"
-            style={{ width: "25px", marginRight: "5px" }}
-            src={user.avatar}
-            alt={user.name}
-            title="You Must have a gravatar connected to your email account to display an image"
-          />
+          {Object.keys(user).length !== 0 ? (
+            <img
+              className="rounded-circle"
+              style={{ width: "25px", marginRight: "5px" }}
+              src={user.avatar}
+              alt={user.name}
+              title="You Must have a gravatar connected to your email account to display an image"
+            />
+          ) : null}
           Logout
         </NavLink>
       </li>

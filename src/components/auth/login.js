@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as auth from "../../store/actions/auth";
 import { Redirect } from "react-router-dom";
-import classnames from "classnames";
+//import classnames from "classnames";
 import TextFieldGroup from "../common/TextFieldGroup";
 
 class Login extends Component {
@@ -32,7 +32,10 @@ class Login extends Component {
       //console.log(password_error, email_error);
     }
 
-    if (this.props.auth.isAuthenticated && this.props.auth.user) {
+    if (
+      this.props.auth.isAuthenticated &&
+      Object.keys(this.props.auth.user).length !== 0
+    ) {
       redirect = <Redirect to="/dashboard" />;
     }
 
