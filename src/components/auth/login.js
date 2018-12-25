@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as auth from "../../store/actions/auth";
 import { Redirect } from "react-router-dom";
 import classnames from "classnames";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class Login extends Component {
   state = {
@@ -46,36 +47,23 @@ class Login extends Component {
                 Sign in to your DevConnector account
               </p>
               <form onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": email_error
-                    })}
-                    placeholder="Email Address"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.handleInput}
-                  />
-                  {email_error ? (
-                    <div className="invalid-feedback">{email_error}</div>
-                  ) : null}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": password_error
-                    })}
-                    placeholder="Password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleInput}
-                  />
-                  {password_error ? (
-                    <div className="invalid-feedback">{password_error}</div>
-                  ) : null}
-                </div>
+                <TextFieldGroup
+                  placeholder="Email Address"
+                  name="email"
+                  type="email"
+                  value={this.state.email}
+                  onChange={this.handleInput}
+                  error={email_error}
+                />
+                <TextFieldGroup
+                  placeholder="Password"
+                  name="password"
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.handleInput}
+                  error={password_error}
+                />
+
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
