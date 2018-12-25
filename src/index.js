@@ -8,6 +8,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import authReducer from "./store/reducers/auth";
 import errorReducer from "./store/reducers/errors";
+import profileReducer from "./store/reducers/profile";
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
@@ -16,7 +17,8 @@ const composeEnhancers =
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  error: errorReducer
+  error: errorReducer,
+  profile: profileReducer
 });
 
 const store = createStore(
