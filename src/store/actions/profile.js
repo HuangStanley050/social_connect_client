@@ -20,6 +20,31 @@ export const fetch_profile_success = profile => {
   };
 };
 
+export const clear_current_profile = () => {
+  return {
+    type: actionTypes.CLEAR_CURRENT_PROFILE
+  };
+};
+
 export const fetch_profile = () => {
-  return dispatch => {};
+  return dispatch => {
+    dispatch(fetch_profile_start());
+    axios
+      .get(
+        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile"
+      )
+      .then(res => {
+        //Object.keys(a).length > 0
+        console.log(res);
+        if (Object.keys(res.data).length === 0) {
+          dispatch(clear_current_profile());
+        } else {
+          dispatch(fetch_profile_success(res.data));
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(clear_current_profile());
+      });
+  };
 };

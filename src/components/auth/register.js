@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as auth from "../../store/actions/auth";
-import classnames from "classnames";
+//import classnames from "classnames";
 import TextFieldGroup from "../common/TextFieldGroup";
 
 class Register extends Component {

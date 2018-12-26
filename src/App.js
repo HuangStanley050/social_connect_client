@@ -9,6 +9,7 @@ import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
 import Login from "./components/auth/login";
 import Register from "./components/auth/register";
+import DashBoard from "./components/dashboard/dashboard";
 import { login_success as setUser, logout } from "./store/actions/auth";
 /*global localStorage */
 
@@ -32,6 +33,7 @@ class App extends Component {
           <div className="container">
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/dashboard" component={DashBoard} />
           </div>
         </Switch>
         <Footer />
