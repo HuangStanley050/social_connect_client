@@ -11,6 +11,7 @@ import Login from "./components/auth/login";
 import Register from "./components/auth/register";
 import DashBoard from "./components/dashboard/dashboard";
 import { login_success as setUser, logout } from "./store/actions/auth";
+import { clear_current_profile } from "./store/actions/profile";
 /*global localStorage */
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
       const currentTime = Date.now() / 1000;
       if (decoded < currentTime) {
         this.props.logout();
+        this.props.clearProfile();
       }
     }
     return (
@@ -45,7 +47,8 @@ class App extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     setUser: userData => dispatch(setUser(userData)),
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    clearProfile: () => dispatch(clear_current_profile())
   };
 };
 

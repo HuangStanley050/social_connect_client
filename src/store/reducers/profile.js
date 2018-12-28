@@ -22,7 +22,13 @@ const reducer = (state = initialState, action) => {
     case actionTypes.CLEAR_CURRENT_PROFILE:
       return {
         ...state,
-        profile: {}
+        profile: {},
+        loading: false
+      };
+    case actionTypes.GET_PROFILE_FAIL:
+      return {
+        ...state,
+        loading: false
       };
     default:
       return state;

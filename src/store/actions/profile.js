@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes.js";
+import { error } from "./errors";
 
 export const fetch_profile_start = () => {
   return {
@@ -35,16 +36,22 @@ export const fetch_profile = () => {
       )
       .then(res => {
         //Object.keys(a).length > 0
-        console.log(res);
-        if (Object.keys(res.data).length === 0) {
-          dispatch(clear_current_profile());
-        } else {
-          dispatch(fetch_profile_success(res.data));
-        }
+        //console.log(res);
+
+        dispatch(fetch_profile_success(res.data));
       })
       .catch(err => {
-        console.log(err);
-        dispatch(clear_current_profile());
+        //console.log(err);
+        //dispatch(clear_current_profile());
+        dispatch(error(err.response.data));
+        console.log(err.response);
+        if (err.response.status === 401) {
+          //not authorized
+          dispatch(fetch_profile_fail());
+        } else if (err.response.status === 404) {
+          //not able to find the profile but user is authenticated
+          dispatch(clear_current_profile());
+        }
       });
   };
 };
