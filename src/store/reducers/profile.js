@@ -28,6 +28,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.GET_PROFILE_FAIL:
       return {
         ...state,
+        profile: null,
         loading: false
       };
     default:

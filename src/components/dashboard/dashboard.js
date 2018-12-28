@@ -14,7 +14,10 @@ class DashBoard extends Component {
     let redirect = null;
     let dashboardContent;
 
-    if (!this.props.auth.isAuthenticated) {
+    if (
+      !this.props.auth.isAuthenticated &&
+      Object.keys(this.props.auth.user).length === 0
+    ) {
       redirect = <Redirect to="/login" />;
     }
 

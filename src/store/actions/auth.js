@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes.js";
 import { error } from "./errors";
-import { clear_current_profile } from "./profile";
+import { clear_current_profile, fetch_profile_fail } from "./profile";
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
@@ -92,6 +92,6 @@ export const logout = () => {
     localStorage.removeItem("jwtToken");
     setAuthToken(false);
     dispatch(login_fail());
-    dispatch(clear_current_profile());
+    dispatch(fetch_profile_fail());
   };
 };
