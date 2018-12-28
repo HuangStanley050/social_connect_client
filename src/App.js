@@ -10,6 +10,7 @@ import Landing from "./components/layout/Landing";
 import Login from "./components/auth/login";
 import Register from "./components/auth/register";
 import DashBoard from "./components/dashboard/dashboard";
+import CreateProfile from "./components/create-profile/createProfile";
 import { login_success as setUser, logout } from "./store/actions/auth";
 import { clear_current_profile } from "./store/actions/profile";
 /*global localStorage */

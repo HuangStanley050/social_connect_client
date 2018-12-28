@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes.js";
 import { error } from "./errors";
-import { clear_current_profile, fetch_profile_fail } from "./profile";
+import { fetch_profile_fail } from "./profile";
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
