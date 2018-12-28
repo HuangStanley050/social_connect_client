@@ -35,14 +35,9 @@ export const fetch_profile = () => {
         "https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile"
       )
       .then(res => {
-        //Object.keys(a).length > 0
-        //console.log(res);
-
         dispatch(fetch_profile_success(res.data));
       })
       .catch(err => {
-        //console.log(err);
-        //dispatch(clear_current_profile());
         dispatch(error(err.response.data));
         console.log(err.response);
         if (err.response.status === 401) {
