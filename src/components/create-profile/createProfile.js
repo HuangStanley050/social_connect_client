@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import TextFieldGroup from "../common/TextFieldGroup";
+import TextAreaFieldGroup from "../common/TextAreaField";
+import SelectListGroup from "../common/SelectListGroup";
 
 class CreateProfile extends Component {
   state = {
@@ -62,7 +64,7 @@ class CreateProfile extends Component {
                       Student or Learning
                     </option>
                     <option value="Instructor">Instructor or Teacher</option>
-                    classNameclassName
+
                     <option value="Intern">Intern</option>
                     <option value="Other">Other</option>
                   </select>
