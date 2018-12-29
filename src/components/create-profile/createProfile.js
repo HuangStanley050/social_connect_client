@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaField";
 import SelectListGroup from "../common/SelectListGroup";
+import InputGroup from "../common/InputGroup";
 
 class CreateProfile extends Component {
   state = {
@@ -22,7 +23,16 @@ class CreateProfile extends Component {
     instagram: "",
     errors: {}
   };
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log("form submitted");
+  };
+  handleInput = e => {
+    //console.log("input changed");
+    this.setState({ [e.target.name]: e.target.value });
+  };
   render() {
+    const { errors } = this.state;
     return (
       <div className="create-profile">
         <div className="container">
@@ -36,19 +46,18 @@ class CreateProfile extends Component {
                 Let's get some information to make your profile stand out
               </p>
               <small className="d-block pb-3">* = required field</small>
-              <form action="add-experience.html">
+              <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                  <input
+                  <TextFieldGroup
                     type="text"
-                    className="form-control form-control-lg"
+                    value={this.state.handle}
+                    onChange={this.handleInput}
                     placeholder="* Profile handle"
                     name="handle"
-                    required
+                    error={errors.handle}
+                    info="A unique handle for your profile URL. Your full name,
+                    company name, nickname."
                   />
-                  <small className="form-text text-muted">
-                    A unique handle for your profile URL. Your full name,
-                    company name, nickname, etc (This CAN'T be changed later)
-                  </small>
                 </div>
                 <div className="form-group">
                   <select
