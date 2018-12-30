@@ -31,6 +31,22 @@ const reducer = (state = initialState, action) => {
         profile: null,
         loading: false
       };
+    case actionTypes.CREATE_PROFILE_START:
+      return {
+        ...state,
+        loading: true
+      };
+    case actionTypes.CREATE_PROFILE_FAIL:
+      return {
+        ...state,
+        loading: false
+      };
+    case actionTypes.CREATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        profile: action.payload
+      };
     default:
       return state;
   }

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect, withRouter } from "react-router-dom";
+import { create_profile } from "../../store/actions/profile";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaField";
 import SelectListGroup from "../common/SelectListGroup";
@@ -25,13 +27,35 @@ class CreateProfile extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
+    const profileData = {
+      handle: this.state.handle,
+      company: this.state.company,
+      website: this.state.website,
+      location: this.state.location,
+      status: this.state.status,
+      hobbies: this.state.hobbies,
+      githubusername: this.state.githubusername,
+      bio: this.state.bio,
+      twitter: this.state.twitter,
+      facebook: this.state.facebook,
+      linkedin: this.state.linkedin,
+      youtube: this.state.youtube,
+      instagram: this.state.instagram
+    };
     console.log("form submitted");
+    this.props.create("stuff");
+    //this.props.history.push("/dashboard");
   };
   handleInput = e => {
     //console.log("input changed");
     this.setState({ [e.target.name]: e.target.value });
   };
+
   render() {
+    let redirect = null;
+    let handle_error = null;
+    let status_error = null;
+    let hobbies_error = null;
     const { errors, displaySocialInputs } = this.state;
     let socialInputs;
     const options = [
@@ -44,6 +68,19 @@ class CreateProfile extends Component {
       { label: "Technician", value: "Technician" },
       { label: "Other", value: "Other" }
     ];
+
+    if (this.props.error) {
+      console.log(this.props.error);
+    }
+
+    if (
+      !this.props.auth.isAuthenticated &&
+      Object.keys(this.props.auth.user).length === 0
+    ) {
+      //console.log(this.props.auth.isAuthenticated, this.props.auth.user);
+      redirect = <Redirect to="/" />;
+    }
+
     if (displaySocialInputs) {
       socialInputs = (
         <div>
@@ -92,6 +129,7 @@ class CreateProfile extends Component {
     }
     return (
       <div className="create-profile">
+        {redirect}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -225,8 +263,18 @@ class CreateProfile extends Component {
 const mapStateToProps = state => {
   return {
     profile: state.profile,
+    auth: state.auth,
     error: state.error
   };
 };
 
-export default connect(mapStateToProps)(CreateProfile);
+const mapDispatchToProps = dispatch => {
+  return {
+    create: data => dispatch(create_profile(data))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateProfile);

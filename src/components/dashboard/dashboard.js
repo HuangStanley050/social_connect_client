@@ -27,7 +27,14 @@ class DashBoard extends Component {
       if (Object.keys(profile).length > 0) {
         //user has a profile
         //then go on to display profile
-        dashboardContent = <h1>Display Profile</h1>;
+        dashboardContent = (
+          <div>
+            <h1>Display Profile</h1>
+            <Link className="btn btn-lg btn-info" to="/create-profile">
+              Edit Profile
+            </Link>
+          </div>
+        );
       } else {
         //user is logged in but has no profile
         dashboardContent = (
