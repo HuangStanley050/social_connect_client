@@ -16,7 +16,17 @@ import { clear_current_profile } from "./store/actions/profile";
 /*global localStorage */
 
 class App extends Component {
+  /*componentDidUpdate(prevProps) {
+    console.log("App updating!");
+    console.log(prevProps);
+  }*/
+  static getDerivedStateFromProps(nextProps) {
+    console.log("App next props is---> ", nextProps);
+    //console.log(nextProps);
+  }
+
   componentDidMount() {
+    console.log("App mounted ", this.props);
     if (localStorage.jwtToken) {
       setAuthToken(localStorage.jwtToken);
       const decoded = jwt_decode(localStorage.jwtToken);

@@ -25,21 +25,9 @@ class CreateProfile extends Component {
     instagram: "",
     errors: {}
   };
-  /*componentDidUpdate(prevProps, prevState) {
-    console.log("updated!");
-    console.log(prevProps);
-    console.log(prevState);
-    //console.log(this.props.error.errors);
-  }*/
-
   componentDidMount() {
-    console.log(this.props.auth);
-    /*if (Object.keys(this.props.auth.user).length === 0) {
-      //console.log(this.props.auth.isAuthenticated, this.props.auth.user);
-      this.props.history.push("/");
-    }*/
+    console.log(this.props);
   }
-
   handleSubmit = e => {
     e.preventDefault();
     const profileData = {
@@ -59,9 +47,7 @@ class CreateProfile extends Component {
     };
     //console.log(profileData);
     this.props.create(profileData);
-    if (this.props.profile) {
-      this.props.history.push("/dashboard");
-    }
+    console.log(this.props.profile);
   };
 
   handleInput = e => {
