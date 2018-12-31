@@ -34,7 +34,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         isAuthenticated: true,
         loading: false,
-        user: { ...action.payload }
+        user: { ...state.user, ...action.payload }
       };
     case actionTypes.LOGIN_FAIL:
       return {

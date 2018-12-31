@@ -16,7 +16,7 @@ import { clear_current_profile } from "./store/actions/profile";
 /*global localStorage */
 
 class App extends Component {
-  render() {
+  componentDidMount() {
     if (localStorage.jwtToken) {
       setAuthToken(localStorage.jwtToken);
       const decoded = jwt_decode(localStorage.jwtToken);
@@ -28,6 +28,8 @@ class App extends Component {
         this.props.clearProfile();
       }
     }
+  }
+  render() {
     return (
       <div className="App">
         <NavBar />
@@ -36,8 +38,8 @@ class App extends Component {
           <div className="container">
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/dashboard" component={DashBoard} />
             <Route path="/create-profile" component={CreateProfile} />
+            <Route path="/dashboard" component={DashBoard} />
           </div>
         </Switch>
         <Footer />
@@ -54,9 +56,17 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+const mapStateToProps = state => {
+  return {
+    auth: state.auth,
+    profile: state.profile,
+    error: state.error
+  };
+};
+
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(App)
 );

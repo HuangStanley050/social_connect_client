@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect, withRouter } from "react-router-dom";
+import { Redirect, withRouter, Link } from "react-router-dom";
 import { create_profile } from "../../store/actions/profile";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaField";
@@ -25,6 +25,22 @@ class CreateProfile extends Component {
     instagram: "",
     errors: {}
   };
+  componentDidUpdate() {
+    console.log("updated!");
+    //console.log(this.props.error.errors);
+  }
+
+  /*componentDidMount() {
+    console.log(this.props.auth);
+    if (
+      !this.props.auth.isAuthenticated &&
+      Object.keys(this.props.auth.user).length === 0
+    ) {
+      //console.log(this.props.auth.isAuthenticated, this.props.auth.user);
+      this.props.history.push("/");
+    }
+  }*/
+
   handleSubmit = e => {
     e.preventDefault();
     const profileData = {
@@ -42,17 +58,18 @@ class CreateProfile extends Component {
       youtube: this.state.youtube,
       instagram: this.state.instagram
     };
-    console.log("form submitted");
-    this.props.create("stuff");
+    //console.log(profileData);
+    this.props.create(profileData);
     //this.props.history.push("/dashboard");
   };
+
   handleInput = e => {
     //console.log("input changed");
     this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
-    let redirect = null;
+    //let redirect = null;
     let handle_error = null;
     let status_error = null;
     let hobbies_error = null;
@@ -69,16 +86,22 @@ class CreateProfile extends Component {
       { label: "Other", value: "Other" }
     ];
 
-    if (this.props.error) {
-      console.log(this.props.error);
-    }
-
-    if (
+    /*if (
       !this.props.auth.isAuthenticated &&
       Object.keys(this.props.auth.user).length === 0
     ) {
       //console.log(this.props.auth.isAuthenticated, this.props.auth.user);
       redirect = <Redirect to="/" />;
+    }*/
+
+    if (this.props.error.errors) {
+      if (this.props.error.errors.handle)
+        handle_error = this.props.error.errors.handle;
+      if (this.props.error.errors.status)
+        status_error = this.props.error.errors.status;
+      if (this.props.error.errors.hobbies)
+        hobbies_error = this.props.error.errors.hobbies;
+      //console.log(handle_error, status_error, hobbies_error);
     }
 
     if (displaySocialInputs) {
@@ -129,13 +152,13 @@ class CreateProfile extends Component {
     }
     return (
       <div className="create-profile">
-        {redirect}
+        {/*{redirect}*/}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <a href="dashboard.html" className="btn btn-light">
+              <Link to="/dashboard" className="btn btn-light">
                 Go Back
-              </a>
+              </Link>
               <h1 className="display-4 text-center">Create Your Profile</h1>
               <p className="lead text-center">
                 Let's get some information to make your profile stand out
@@ -149,7 +172,7 @@ class CreateProfile extends Component {
                     onChange={this.handleInput}
                     placeholder="* Profile handle"
                     name="handle"
-                    error={errors.handle}
+                    error={handle_error}
                     info="A unique handle for your profile URL. Your full name,
                     company name, nickname."
                   />
@@ -159,7 +182,7 @@ class CreateProfile extends Component {
                     placeholder="status"
                     value={this.state.status}
                     name="status"
-                    error={errors.status}
+                    error={status_error}
                     onChange={this.handleInput}
                     info="Give us an idea of where you are at in your career"
                     options={options}
@@ -203,7 +226,7 @@ class CreateProfile extends Component {
                     type="text"
                     value={this.state.hobbies}
                     onChange={this.handleInput}
-                    error={errors.hobbies}
+                    error={hobbies_error}
                     placeholder="Hobbies"
                     name="hobbies"
                     info="Please use comma separated values (eg.

@@ -57,12 +57,15 @@ export const create_profile = data => {
     dispatch(create_profile_start());
     axios
       .post(
-        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile"
+        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile",
+        data
       )
       .then(res => console.log(res))
       .catch(err => {
-        //console.log(err.response.data);
+        console.log(data);
+        console.log(err.response);
         dispatch(error(err.response.data));
+        dispatch(create_profile_fail());
       });
   };
 };
