@@ -60,10 +60,12 @@ export const create_profile = data => {
         "https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile",
         data
       )
-      .then(res => console.log(res))
+      .then(res => {
+        dispatch(create_profile_success(res.data));
+      })
       .catch(err => {
-        console.log(data);
-        console.log(err.response);
+        //console.log(data);
+        //console.log(err.response);
         dispatch(error(err.response.data));
         dispatch(create_profile_fail());
       });

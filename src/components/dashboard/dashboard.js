@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetch_profile } from "../../store/actions/profile";
 import Spinner from "../common/spinner.js";
 import { Redirect, Link } from "react-router-dom";
+import ProfileActions from "./profileactions";
 
 class DashBoard extends Component {
   componentDidMount() {
@@ -29,10 +30,13 @@ class DashBoard extends Component {
         //then go on to display profile
         dashboardContent = (
           <div>
-            <h1>Display Profile</h1>
-            <Link className="btn btn-lg btn-info" to="/create-profile">
+            <p className="lead text-muted">
+              Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+            </p>
+            <ProfileActions />
+            {/*<Link className="btn btn-lg btn-info" to="/create-profile">
               Edit Profile
-            </Link>
+            </Link>*/}
           </div>
         );
       } else {

@@ -25,21 +25,20 @@ class CreateProfile extends Component {
     instagram: "",
     errors: {}
   };
-  componentDidUpdate() {
+  /*componentDidUpdate(prevProps, prevState) {
     console.log("updated!");
+    console.log(prevProps);
+    console.log(prevState);
     //console.log(this.props.error.errors);
-  }
+  }*/
 
-  /*componentDidMount() {
+  componentDidMount() {
     console.log(this.props.auth);
-    if (
-      !this.props.auth.isAuthenticated &&
-      Object.keys(this.props.auth.user).length === 0
-    ) {
+    /*if (Object.keys(this.props.auth.user).length === 0) {
       //console.log(this.props.auth.isAuthenticated, this.props.auth.user);
       this.props.history.push("/");
-    }
-  }*/
+    }*/
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -60,7 +59,9 @@ class CreateProfile extends Component {
     };
     //console.log(profileData);
     this.props.create(profileData);
-    //this.props.history.push("/dashboard");
+    if (this.props.profile) {
+      this.props.history.push("/dashboard");
+    }
   };
 
   handleInput = e => {
