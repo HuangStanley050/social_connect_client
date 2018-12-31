@@ -47,6 +47,22 @@ const reducer = (state = initialState, action) => {
         loading: false,
         profile: action.payload
       };
+    case actionTypes.DELETE_PROFILE_START:
+      //console.log("delet your profile and account");
+      return {
+        ...state,
+        loading: true
+      };
+    case actionTypes.DELETE_PROFILE_FAIL:
+      return {
+        ...state,
+        loading: false
+      };
+    case actionTypes.DELETE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        loading: false
+      };
     default:
       return state;
   }

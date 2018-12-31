@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetch_profile } from "../../store/actions/profile";
+import { fetch_profile, delete_account } from "../../store/actions/profile";
 import Spinner from "../common/spinner.js";
 import { Redirect, Link } from "react-router-dom";
 import ProfileActions from "./profileactions";
@@ -9,6 +9,9 @@ class DashBoard extends Component {
   componentDidMount() {
     this.props.getProfile();
   }
+  onDeleteAccount = e => {
+    this.props.deleteAccount();
+  };
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
@@ -37,6 +40,11 @@ class DashBoard extends Component {
             {/*<Link className="btn btn-lg btn-info" to="/create-profile">
               Edit Profile
             </Link>*/}
+            <div style={{ marginBottom: "60px" }}>
+              <button onClick={this.onDeleteAccount} className="btn btn-danger">
+                Delete Account
+              </button>
+            </div>
           </div>
         );
       } else {
@@ -78,7 +86,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getProfile: () => dispatch(fetch_profile())
+    getProfile: () => dispatch(fetch_profile()),
+    deleteAccount: () => dispatch(delete_account())
   };
 };
 

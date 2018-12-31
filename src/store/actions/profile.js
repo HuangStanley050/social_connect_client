@@ -1,6 +1,9 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes.js";
 import { error } from "./errors";
+import setAuthToken from "../../utils/setAuthToken";
+import { login_fail } from "./auth";
+/*global localStorage */
 
 //==============fetching profile=============//
 export const fetch_profile_start = () => {
@@ -50,7 +53,7 @@ export const clear_current_profile = () => {
   };
 };
 
-//========================async functions for fetch and create
+//========================async functions for fetch, create and delete
 
 export const create_profile = data => {
   return dispatch => {
@@ -93,6 +96,30 @@ export const fetch_profile = () => {
           dispatch(clear_current_profile());
         }
       });
+  };
+};
+
+export const delete_account = () => {
+  return dispatch => {
+    if (window.confirm("Are you sure? This can't be undone.")) {
+      dispatch({ type: actionTypes.DELETE_PROFILE_START });
+      axios
+        .delete(
+          "https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile"
+        )
+        .then(res => {
+          console.log(res);
+          localStorage.removeItem("jwtToken");
+          setAuthToken(false);
+          dispatch({ type: actionTypes.DELETE_PROFILE_SUCCESS });
+          dispatch(login_fail());
+          dispatch(fetch_profile_fail());
+        })
+        .catch(err => {
+          dispatch(error(err.response.data));
+          dispatch({ type: actionTypes.DELETE_PROFILE_FAIL });
+        });
+    }
   };
 };
 
