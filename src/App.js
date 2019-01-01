@@ -11,6 +11,7 @@ import Login from "./components/auth/login";
 import Register from "./components/auth/register";
 import DashBoard from "./components/dashboard/dashboard";
 import CreateProfile from "./components/create-profile/createProfile";
+import EditProfile from "./components/edit-profile/edit-profile";
 import { login_success as setUser, logout } from "./store/actions/auth";
 import { clear_current_profile } from "./store/actions/profile";
 /*global localStorage */
@@ -50,6 +51,7 @@ class App extends Component {
             <Route path="/register" component={Register} />
             <Route path="/create-profile" component={CreateProfile} />
             <Route path="/dashboard" component={DashBoard} />
+            <Route exact path="/edit-profile" component={EditProfile} />
           </div>
         </Switch>
         <Footer />
