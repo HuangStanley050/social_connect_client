@@ -25,8 +25,16 @@ class CreateProfile extends Component {
     instagram: "",
     errors: {}
   };
-  componentDidMount() {
-    console.log(this.props);
+
+  static getDerivedStateFromProps(nextProps) {
+    //console.log("create-profile current props", this.props.auth);
+    //console.log("Create-profile next props", nextProps);
+    //return { auth: nextProps.auth };
+  }
+  componentDidUpdate(prevProps) {
+    console.log("Create-Profile updated");
+    console.log("current prop", this.props);
+    //console.log("prev prop", prevProps.auth);
   }
   handleSubmit = e => {
     e.preventDefault();
@@ -47,7 +55,8 @@ class CreateProfile extends Component {
     };
     //console.log(profileData);
     this.props.create(profileData);
-    console.log(this.props.profile);
+    //console.log("Create profile submitted");
+    //console.log(this.props.profile);
   };
 
   handleInput = e => {
@@ -56,7 +65,7 @@ class CreateProfile extends Component {
   };
 
   render() {
-    //let redirect = null;
+    let redirect = null; //===========>this is for after the profile has been created successfully
     let handle_error = null;
     let status_error = null;
     let hobbies_error = null;
@@ -73,13 +82,9 @@ class CreateProfile extends Component {
       { label: "Other", value: "Other" }
     ];
 
-    /*if (
-      !this.props.auth.isAuthenticated &&
-      Object.keys(this.props.auth.user).length === 0
-    ) {
-      //console.log(this.props.auth.isAuthenticated, this.props.auth.user);
-      redirect = <Redirect to="/" />;
-    }*/
+    if (this.props.profile.profile !== null) {
+      redirect = <Redirect to="/dashboard" />;
+    }
 
     if (this.props.error.errors) {
       if (this.props.error.errors.handle)
@@ -139,7 +144,7 @@ class CreateProfile extends Component {
     }
     return (
       <div className="create-profile">
-        {/*{redirect}*/}
+        {redirect}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">

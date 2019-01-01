@@ -20,10 +20,10 @@ class App extends Component {
     console.log("App updating!");
     console.log(prevProps);
   }*/
-  static getDerivedStateFromProps(nextProps) {
+  /*static getDerivedStateFromProps(nextProps) {
     console.log("App next props is---> ", nextProps);
     //console.log(nextProps);
-  }
+  }*/
 
   componentDidMount() {
     console.log("App mounted ", this.props);

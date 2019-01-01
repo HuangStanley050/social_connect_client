@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.GET_PROFILE_SUCCESS:
       return {
         ...state,
-        profile: action.payload,
+        profile: { ...action.payload },
         loading: false
       };
     case actionTypes.CLEAR_CURRENT_PROFILE:
@@ -45,7 +45,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        profile: action.payload
+        profile: { ...action.payload }
       };
     case actionTypes.DELETE_PROFILE_START:
       //console.log("delet your profile and account");
