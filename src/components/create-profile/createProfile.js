@@ -82,7 +82,10 @@ class CreateProfile extends Component {
       { label: "Other", value: "Other" }
     ];
 
-    if (this.props.profile.profile !== null) {
+    if (
+      this.props.profile.profile === null &&
+      !this.props.auth.isAuthenticated
+    ) {
       redirect = <Redirect to="/dashboard" />;
     }
 
