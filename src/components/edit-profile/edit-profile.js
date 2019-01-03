@@ -76,7 +76,7 @@ class EditProfile extends Component {
       website: website,
       location: location,
       status: status,
-      skills: hobbiesCSV,
+      hobbies: hobbiesCSV,
       githubusername: githubusername,
       bio: bio,
       twitter: twitter,
@@ -105,7 +105,7 @@ class EditProfile extends Component {
       instagram: this.state.instagram
     };
 
-    this.props.create(profileData);
+    this.props.create(profileData, this.props.history);
   };
 
   handleInput = e => {
@@ -326,12 +326,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    create: data => dispatch(create_profile(data)),
+    create: (data, history) => dispatch(create_profile(data, history)),
     fetchProfile: () => dispatch(fetch_profile())
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EditProfile);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(EditProfile)
+);

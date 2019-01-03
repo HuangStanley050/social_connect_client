@@ -55,7 +55,7 @@ export const clear_current_profile = () => {
 
 //========================async functions for fetch, create and delete
 
-export const create_profile = data => {
+export const create_profile = (data, history) => {
   return dispatch => {
     dispatch(create_profile_start());
     axios
@@ -65,6 +65,8 @@ export const create_profile = data => {
       )
       .then(res => {
         dispatch(create_profile_success(res.data));
+        //console.log(history);
+        history.push("/dashboard");
       })
       .catch(err => {
         //console.log(data);

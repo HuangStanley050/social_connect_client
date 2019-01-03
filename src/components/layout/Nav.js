@@ -9,6 +9,11 @@ const Navbar = props => {
   const authLink = (
     <ul className="navbar-nav ml-auto">
       <li className="nav-item">
+        <NavLink className="nav-link" to="/dashboard">
+          DashBoard
+        </NavLink>
+      </li>
+      <li className="nav-item">
         <NavLink to="/" className="nav-link" onClick={props.logout}>
           {Object.keys(user).length !== 0 ? (
             <img
