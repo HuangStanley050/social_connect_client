@@ -28,10 +28,12 @@ class EditProfile extends Component {
   };
 
   componentDidMount() {
-    console.log("edit profile mounted");
     //console.log(this.props.profile.profile);
 
     //validate the profile fiedls coming back if it's empty then give empty string
+    if (this.props.profile.profile === null) {
+      return this.props.history.push("/login");
+    }
     const handle = this.props.profile.profile.handle;
     const status = this.props.profile.profile.status;
     const hobbiesCSV = this.props.profile.profile.hobbies.join(",");
@@ -114,6 +116,7 @@ class EditProfile extends Component {
   };
 
   render() {
+    let redirect = null;
     let handle_error = null;
     let status_error = null;
     let hobbies_error = null;
@@ -138,6 +141,13 @@ class EditProfile extends Component {
       if (this.props.error.errors.hobbies)
         hobbies_error = this.props.error.errors.hobbies;
       //console.log(handle_error, status_error, hobbies_error);
+    }
+
+    if (
+      this.props.profile.profile === null &&
+      !this.props.auth.isAuthenticated
+    ) {
+      redirect = <Redirect to="/dashboard" />;
     }
 
     if (displaySocialInputs) {
@@ -188,6 +198,7 @@ class EditProfile extends Component {
     }
     return (
       <div className="create-profile">
+        {redirect}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
