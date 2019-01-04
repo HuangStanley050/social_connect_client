@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaGroup from "../common/TextAreaField";
+import { add_experience } from "../../store/actions/experience";
 
 class AddExperience extends React.Component {
   state = {
@@ -15,9 +16,19 @@ class AddExperience extends React.Component {
     description: "",
     disabled: false
   };
+
   handleSubmit = e => {
     e.preventDefault();
-    console.log("submitted");
+    const expData = {
+      company: this.state.company,
+      title: this.state.title,
+      location: this.state.location,
+      from: this.state.from,
+      to: this.state.to,
+      current: this.state.current,
+      description: this.state.description
+    };
+    this.props.addExperience(expData, this.props.history);
   };
   handleInput = e => {
     //console.log("input changed");
@@ -33,6 +44,15 @@ class AddExperience extends React.Component {
     let title_error = null;
     let company_error = null;
     let from_error = null;
+    if (this.props.error.errors) {
+      //console.log(this.props.error);
+      if (this.props.error.errors.company)
+        company_error = this.props.error.errors.company;
+      if (this.props.error.errors.title)
+        title_error = this.props.error.errors.title;
+      if (this.props.error.errors.from)
+        from_error = this.props.error.errors.from;
+    }
     return (
       <div className="section add-experience">
         <div className="container">
@@ -130,7 +150,9 @@ class AddExperience extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    addExperience: (data, history) => dispatch(add_experience(data, history))
+  };
 };
 
 const mapStateToProps = state => {

@@ -63,6 +63,22 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false
       };
+    case actionTypes.ADD_EXPERIENCE_START:
+      return {
+        ...state,
+        loading: true
+      };
+    case actionTypes.ADD_EXPERIENCE_FAIL:
+      return {
+        ...state,
+        loading: false
+      };
+    case actionTypes.ADD_EXPERIENCE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        profile: { ...action.payload }
+      };
     default:
       return state;
   }
