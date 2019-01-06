@@ -43,6 +43,7 @@ class DashBoard extends Component {
               Edit Profile
             </Link>*/}
             <Experience experience={this.props.profile.profile.experience} />
+            <Education education={this.props.profile.profile.education} />
             <div style={{ marginBottom: "60px" }}>
               <button onClick={this.onDeleteAccount} className="btn btn-danger">
                 Delete Account

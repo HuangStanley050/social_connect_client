@@ -111,6 +111,22 @@ const reducer = (state = initialState, action) => {
         loading: false,
         profile: { ...action.payload }
       };
+    case actionTypes.DELETE_EDUCATION_START:
+      return {
+        ...state,
+        loading: true
+      };
+    case actionTypes.DELETE_EDUCATION_FAIL:
+      return {
+        ...state,
+        loading: false
+      };
+    case actionTypes.DELETE_EDUCATION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        profile: { ...action.payload }
+      };
     default:
       return state;
   }

@@ -24,3 +24,9 @@ export const add_education = (data, history) => {
       });
   };
 };
+
+export const delete_education = eduID => {
+  return dispatch => {
+    console.log(eduID);
+  };
+};
