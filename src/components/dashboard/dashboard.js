@@ -4,6 +4,8 @@ import { fetch_profile, delete_account } from "../../store/actions/profile";
 import Spinner from "../common/spinner.js";
 import { Redirect, Link } from "react-router-dom";
 import ProfileActions from "./profileactions";
+import Education from "./education";
+import Experience from "./experience";
 
 class DashBoard extends Component {
   componentDidMount() {
@@ -40,6 +42,7 @@ class DashBoard extends Component {
             {/*<Link className="btn btn-lg btn-info" to="/create-profile">
               Edit Profile
             </Link>*/}
+            <Experience experience={this.props.profile.profile.experience} />
             <div style={{ marginBottom: "60px" }}>
               <button onClick={this.onDeleteAccount} className="btn btn-danger">
                 Delete Account

@@ -26,3 +26,26 @@ export const add_experience = (data, history) => {
     //history.push("/dashboard");
   };
 };
+
+export const delete_experience = expID => {
+  return dispatch => {
+    //console.log(expID);
+    dispatch({ type: actionTypes.DELETE_EXPERIENCE_START });
+    axios
+      .delete(
+        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile/experience/${expID}`
+      )
+      .then(res => {
+        //console.log(res);
+        dispatch({
+          type: actionTypes.DELETE_EXPERIENCE_SUCCESS,
+          payload: res.data
+        });
+      })
+      .catch(err => {
+        //console.log(err);
+        dispatch(error(err.response.data));
+      });
+    dispatch({ type: actionTypes.DELETE_EXPERIENCE_FAIL });
+  };
+};

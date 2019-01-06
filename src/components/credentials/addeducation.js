@@ -98,7 +98,7 @@ class AddEducation extends React.Component {
                     type="text"
                     onChange={this.handleInput}
                     value={this.state.fieldofstudy}
-                    placeholder="Field of Study"
+                    placeholder="* Field of Study"
                     name="fieldofstudy"
                     error={fieldofstudy_error}
                   />
