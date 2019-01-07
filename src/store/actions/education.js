@@ -27,6 +27,20 @@ export const add_education = (data, history) => {
 
 export const delete_education = eduID => {
   return dispatch => {
-    console.log(eduID);
+    //console.log(eduID);
+    dispatch({ type: actionTypes.DELETE_EDUCATION_START });
+    axios
+      .delete(
+        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile/education/${eduID}`
+      )
+      .then(res => {
+        dispatch({
+          type: actionTypes.DELETE_EDUCATION_SUCCESS,
+          payload: res.data
+        });
+      })
+      .catch(err => {
+        dispatch(error(err.response.data));
+      });
   };
 };
