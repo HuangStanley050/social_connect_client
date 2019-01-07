@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect, withRouter, Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { create_profile } from "../../store/actions/profile";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaField";
@@ -54,7 +54,7 @@ class CreateProfile extends Component {
       instagram: this.state.instagram
     };
     //console.log(profileData);
-    this.props.create(profileData);
+    this.props.create(profileData, this.props.history);
     //console.log("Create profile submitted");
     //console.log(this.props.profile);
   };
@@ -288,7 +288,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    create: data => dispatch(create_profile(data))
+    create: (data, history) => dispatch(create_profile(data, history))
   };
 };
 
