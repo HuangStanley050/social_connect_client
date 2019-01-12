@@ -40,7 +40,7 @@ class Login extends Component {
     }
 
     return (
-      <div className="login">
+      <div className="login" style={{ height: "100vh" }}>
         {redirect}
         <div className="container">
           <div className="row">

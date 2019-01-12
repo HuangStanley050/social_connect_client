@@ -127,6 +127,23 @@ const reducer = (state = initialState, action) => {
         loading: false,
         profile: { ...action.payload }
       };
+    case actionTypes.GET_PROFILES_START:
+      return {
+        ...state,
+        loading: true
+      };
+    case actionTypes.GET_PROFILES_FAIL:
+      return {
+        ...state,
+        loading: false
+      };
+    case actionTypes.GET_PROFILES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        profiles: [...action.payload]
+      };
+
     default:
       return state;
   }

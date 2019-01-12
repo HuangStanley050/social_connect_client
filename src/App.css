@@ -1,5 +1,6 @@
 img {
   width: 100%;
+  background: #e1f5fe
 }
 
 .landing {
@@ -36,4 +37,8 @@ img {
 
 .form-control::placeholder {
   color: #bbb !important;
+}
+
+.bg-special {
+  background-color: #e1f5fe;
 }

@@ -26,16 +26,6 @@ class CreateProfile extends Component {
     errors: {}
   };
 
-  static getDerivedStateFromProps(nextProps) {
-    //console.log("create-profile current props", this.props.auth);
-    //console.log("Create-profile next props", nextProps);
-    //return { auth: nextProps.auth };
-  }
-  componentDidUpdate(prevProps) {
-    console.log("Create-Profile updated");
-    console.log("current prop", this.props);
-    //console.log("prev prop", prevProps.auth);
-  }
   handleSubmit = e => {
     e.preventDefault();
     const profileData = {

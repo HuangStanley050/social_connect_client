@@ -49,7 +49,7 @@ class Register extends Component {
     }
 
     return (
-      <div className="register">
+      <div className="register" style={{ height: "100vh" }}>
         {redirect}
         <div className="container">
           <div className="row">

@@ -77,6 +77,28 @@ export const create_profile = (data, history) => {
   };
 };
 
+export const fetch_profiles = () => {
+  return dispatch => {
+    dispatch({ type: actionTypes.GET_PROFILES_START });
+    axios
+      .get(
+        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile/all"
+      )
+      .then(res => {
+        dispatch({
+          type: actionTypes.GET_PROFILES_SUCCESS,
+          payload: res.data
+        });
+        //console.log(res);
+      })
+      .catch(err => {
+        dispatch(error(err.response.data));
+        dispatch({ type: actionTypes.GET_PROFILES_FAIL });
+        //console.log(err.response.data);
+      });
+  };
+};
+
 export const fetch_profile = () => {
   return dispatch => {
     dispatch(fetch_profile_start());
