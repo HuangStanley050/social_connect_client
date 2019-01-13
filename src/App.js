@@ -15,6 +15,7 @@ import EditProfile from "./components/edit-profile/edit-profile";
 import AddExperience from "./components/credentials/addexperience";
 import AddEducation from "./components/credentials/addeducation";
 import Profiles from "./components/profiles/profiles";
+import Profile from "./components/profile/profile";
 import { login_success as setUser, logout } from "./store/actions/auth";
 import { clear_current_profile } from "./store/actions/profile";
 /*global localStorage */
@@ -58,6 +59,7 @@ class App extends Component {
             <Route path="/add-experience" component={AddExperience} />
             <Route path="/add-education" component={AddEducation} />
             <Route path="/profiles" component={Profiles} />
+            <Route path="/profile/:handle" component={Profile} />
           </div>
         </Switch>
         <Footer />

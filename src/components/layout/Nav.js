@@ -64,7 +64,7 @@ const Navbar = props => {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <NavLink className="nav-link" to="/profiles">
-                Developers
+                Users
               </NavLink>
             </li>
           </ul>
