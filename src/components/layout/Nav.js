@@ -63,9 +63,9 @@ const Navbar = props => {
         <div className="collapse navbar-collapse" id="mobile-nav">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <a className="nav-link" href="profiles.html">
+              <NavLink className="nav-link" to="/profiles">
                 Developers
-              </a>
+              </NavLink>
             </li>
           </ul>
           {isAuthenticated && user ? authLink : guestLink}
