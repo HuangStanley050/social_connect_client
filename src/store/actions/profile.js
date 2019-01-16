@@ -147,6 +147,28 @@ export const delete_account = () => {
   };
 };
 
-export const fetch_profile_handle = profileId => {};
+export const fetch_profile_handle = profileId => {
+  return dispatch => {
+    dispatch(fetch_profile_start());
+    axios
+      .get(
+        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile/handle/${profileId}`
+      )
+      .then(res => {
+        dispatch(fetch_profile_success(res.data));
+      })
+      .catch(err => {
+        dispatch(error(err.response.data));
+
+        if (err.response.status === 401) {
+          //not authorized
+          dispatch(fetch_profile_fail());
+        } else if (err.response.status === 404) {
+          //not able to find the profile but user is authenticated
+          dispatch(clear_current_profile());
+        }
+      });
+  };
+};
 
 //===================================

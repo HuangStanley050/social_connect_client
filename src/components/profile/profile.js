@@ -9,8 +9,19 @@ import { Link } from "react-router-dom";
 import { fetch_profile_handle } from "../../store/actions/profile";
 
 class Profile extends Component {
+  componentDidMount() {
+    this.props.get_handle(this.props.match.params.handle);
+  }
   render() {
-    return <h1>{this.props.match.params.handle}</h1>;
+    return (
+      <div>
+        <h1>{this.props.match.params.handle}</h1>
+        <ProfileHeader />
+        <ProfileAbout />
+        <ProfileCreds />
+        <ProfileGithub />
+      </div>
+    );
   }
 }
 
