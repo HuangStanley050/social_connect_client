@@ -6,3 +6,9 @@ export const error = err => {
     payload: err
   };
 };
+
+export const clear_error = () => {
+  return {
+    type: actionTypes.CLEAR_ERROR
+  };
+};

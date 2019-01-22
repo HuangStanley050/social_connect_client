@@ -6,6 +6,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.CLEAR_ERROR:
+      return {
+        ...state,
+        errors: null
+      };
     case actionTypes.ERROR:
       //const clone = Object.assign({}, state);
       //clone.errors = action.payload;

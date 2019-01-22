@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes.js";
-import { error } from "./errors";
+import { error, clear_error } from "./errors";
 import { fetch_profile_fail } from "./profile";
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
@@ -34,7 +34,10 @@ export const register = newUser => {
         "https://github-site-practice-infamousgodhand.c9users.io:8081/api/users/register",
         newUser
       )
-      .then(res => dispatch(registerSuccess()))
+      .then(res => {
+        dispatch(registerSuccess());
+        dispatch(clear_error());
+      })
       .catch(err => {
         console.log(err.response.data);
         dispatch(registerFail());
@@ -78,6 +81,7 @@ export const login = userData => {
         const decoded = jwt_decode(token);
         //console.log(decoded);
         dispatch(login_success(decoded));
+        dispatch(clear_error());
       })
       .catch(err => {
         //console.log(err.response.data);

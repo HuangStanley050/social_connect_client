@@ -30,8 +30,8 @@ const ProfileItem = props => {
           <ul className="list-group">
             {profile.hobbies.slice(0, 4).map((hobby, index) => {
               return (
-                <li className="list-group-item">
-                  <i key={index} className="fa fa-check pr-1" />
+                <li key={index} className="list-group-item">
+                  <i className="fa fa-check pr-1" />
                   {hobby}
                 </li>
               );
