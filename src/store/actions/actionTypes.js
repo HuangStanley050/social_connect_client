@@ -52,3 +52,19 @@ export const DELETE_EDUCATION_SUCCESS = "DELETE_EDUCATION_SUCCESS";
 
 export const ERROR = "ERROR";
 export const CLEAR_ERROR = "CLEAR_ERROR";
+
+//post actions
+
+export const POST_LOADING = "POST_LOADING";
+
+export const GET_POST = "GET_POST";
+export const GET_POST_FAIL = "GET_POST_FAIL";
+
+export const GET_POSTS = "GET_POSTS";
+export const GET_POSTS_FAIL = "GET_POSTS_FAIL";
+
+export const ADD_POST = "ADD_POST";
+export const ADD_POST_FAIL = "ADD_POST_FAIL";
+
+export const DELETE_POST = "DELETE_POST";
+export const DELETE_POST_FAIL = "DELETE_POST_FAIL";
