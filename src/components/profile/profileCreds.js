@@ -67,7 +67,7 @@ const ProfileCreds = props => {
   return (
     <div className="row">
       <div className="col-md-6">
-        <h3 className="text-center text-info">Experience</h3>
+        <h3 className="text-center text-primary">Experience</h3>
         {props.experience.length > 0 ? (
           <ul className="list-group">{experience}</ul>
         ) : (
@@ -76,7 +76,7 @@ const ProfileCreds = props => {
       </div>
 
       <div className="col-md-6">
-        <h3 className="text-center text-info">Education</h3>
+        <h3 className="text-center text-primary">Education</h3>
         {props.education.length > 0 ? (
           <ul className="list-group">{education}</ul>
         ) : (

@@ -16,7 +16,7 @@ const ProfileAbout = props => {
     <div className="row">
       <div className="col-md-12">
         <div className="card card-body bg-light mb-3">
-          <h3 className="text-center text-info">{firstname}'s Bio</h3>
+          <h3 className="text-center  text-primary">{firstname}'s Bio</h3>
           <p className="lead">
             {isEmpty(profile.bio) ? (
               <span>{firstname} does not have a bio</span>
@@ -25,7 +25,7 @@ const ProfileAbout = props => {
             )}
           </p>
           <hr />
-          <h3 className="text-center text-info">Hobbies</h3>
+          <h3 className="text-center text-primary">Hobbies</h3>
           <div className="row">
             <div className="d-flex flex-wrap justify-content-center align-items-center">
               {hobbies}
