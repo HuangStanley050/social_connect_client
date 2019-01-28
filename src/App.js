@@ -16,6 +16,7 @@ import AddExperience from "./components/credentials/addexperience";
 import AddEducation from "./components/credentials/addeducation";
 import Profiles from "./components/profiles/profiles";
 import Profile from "./components/profile/profile";
+import NotFound from "./components/not_found/not_found";
 import { login_success as setUser, logout } from "./store/actions/auth";
 import { clear_current_profile } from "./store/actions/profile";
 /*global localStorage */
@@ -31,7 +32,7 @@ class App extends Component {
   }*/
 
   componentDidMount() {
-    console.log("App mounted ", this.props);
+    //console.log("App mounted ", this.props);
     if (localStorage.jwtToken) {
       setAuthToken(localStorage.jwtToken);
       const decoded = jwt_decode(localStorage.jwtToken);
@@ -60,6 +61,7 @@ class App extends Component {
             <Route path="/add-education" component={AddEducation} />
             <Route path="/profiles" component={Profiles} />
             <Route path="/profile/:handle" component={Profile} />
+            <Route path="/not-found" component={NotFound} />
           </div>
         </Switch>
         <Footer />
