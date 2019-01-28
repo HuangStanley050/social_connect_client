@@ -9,6 +9,11 @@ const Navbar = props => {
   const authLink = (
     <ul className="navbar-nav ml-auto">
       <li className="nav-item">
+        <NavLink className="nav-link" to="/feed">
+          Post Feed
+        </NavLink>
+      </li>
+      <li className="nav-item">
         <NavLink className="nav-link" to="/dashboard">
           DashBoard
         </NavLink>
