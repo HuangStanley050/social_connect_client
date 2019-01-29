@@ -13,9 +13,8 @@ class Profile extends Component {
     this.props.get_handle(this.props.match.params.handle);
   }
 
-  componentDidUpdate(prevProps) {
-    console.log(prevProps.profile.profile);
-    if (prevProps.profile.profile === null && this.props.profile.loading) {
+  componentDidUpdate() {
+    if (this.props.error.errors) {
       this.props.history.push("/not-found");
     }
   }
@@ -66,7 +65,8 @@ class Profile extends Component {
 
 const mapStateToProps = state => {
   return {
-    profile: state.profile
+    profile: state.profile,
+    error: state.error
   };
 };
 
