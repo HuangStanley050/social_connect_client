@@ -31,9 +31,11 @@ export const add_post = postData => {
       )
       .then(res => {
         dispatch(add_post_success(res.data));
+        console.log(res.data);
       })
       .catch(err => {
-        dispatch(error(err.respone.data));
+        console.log(err.response);
+        dispatch(error(err.response.data.text));
         dispatch(add_post_fail());
       });
   };
