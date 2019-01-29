@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
@@ -62,6 +62,7 @@ class App extends Component {
             <Route path="/add-education" component={AddEducation} />
             <Route path="/profiles" component={Profiles} />
             <Route path="/profile/:handle" component={Profile} />
+
             <Route path="/feed" component={Posts} />
             <Route path="/not-found" component={NotFound} />
           </div>
@@ -71,6 +72,8 @@ class App extends Component {
     );
   }
 }
+
+//Object.keys(obj).length == 0
 
 const mapDispatchToProps = dispatch => {
   return {

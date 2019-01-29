@@ -5,6 +5,9 @@ import PostForm from "./postform";
 
 class Posts extends Component {
   render() {
+    if (Object.keys(this.props.auth.user).length === 0) {
+      this.props.history.push("/login");
+    }
     return (
       <div className="feed">
         <div className="container">
@@ -19,4 +22,10 @@ class Posts extends Component {
   }
 }
 
-export default Posts;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
+
+export default connect(mapStateToProps)(Posts);
