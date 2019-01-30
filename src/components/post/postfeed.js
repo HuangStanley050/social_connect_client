@@ -2,9 +2,9 @@ import React from "react";
 import PostItem from "./postitem";
 
 const PostFeed = ({ posts }) => {
-  posts.map(post => {
-    console.log(post.text);
-  });
+  // posts.map(post => {
+  //   console.log(post.text);
+  // });
 
   let postList;
 
@@ -12,7 +12,7 @@ const PostFeed = ({ posts }) => {
     return <PostItem key={post._id} post={post} />;
   });
 
-  return null;
+  return <div className="posts">{postList}</div>;
 };
 
 export default PostFeed;
