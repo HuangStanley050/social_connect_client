@@ -37,6 +37,29 @@ export const delete_post = postId => {
   };
 };
 
+export const like_post = postId => {
+  return dispatch => {
+    console.log(postId);
+    axios
+      .post(
+        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts/like/${postId}`
+      )
+      .then(res => dispatch(get_posts()))
+      .catch(err => dispatch(error(err.response.data.text)));
+  };
+};
+
+export const unlike_post = postId => {
+  return dispatch => {
+    axios
+      .post(
+        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts/unlike/${postId}`
+      )
+      .then(res => dispatch(get_posts()))
+      .catch(err => dispatch(error(err.response.data.text)));
+  };
+};
+
 export const add_post = postData => {
   return dispatch => {
     dispatch(post_loading());

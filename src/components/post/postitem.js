@@ -1,12 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import classnames from "classnames";
-import { delete_post } from "../../store/actions/post";
+import { delete_post, like_post, unlike_post } from "../../store/actions/post";
 import { Link } from "react-router-dom";
 
 const PostItem = props => {
   const onDeletePost = postId => {
     props.deletePost(postId);
+  };
+  const onLike = postId => {
+    props.likePost(postId);
+  };
+  const unLike = postId => {
+    props.unlikePost(postId);
   };
   return (
     <div className="card card-body mb-3">
@@ -24,11 +30,19 @@ const PostItem = props => {
         </div>
         <div className="col-md-10">
           <p className="lead">{props.post.text}</p>
-          <button type="button" className="btn btn-light mr-1">
+          <button
+            onClick={() => onLike(props.post._id)}
+            type="button"
+            className="btn btn-light mr-1"
+          >
             <i className="text-info fas fa-thumbs-up" />
             <span className="badge badge-light">{props.post.likes.length}</span>
           </button>
-          <button type="button" className="btn btn-light mr-1">
+          <button
+            onClick={() => unLike(props.post._id)}
+            type="button"
+            className="btn btn-light mr-1"
+          >
             <i className="text-secondary fas fa-thumbs-down" />
           </button>
           <Link to={`/post/${props.post._id}`} className="btn btn-info mr-1">
@@ -57,7 +71,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deletePost: postId => dispatch(delete_post(postId))
+    deletePost: postId => dispatch(delete_post(postId)),
+    likePost: postId => dispatch(like_post(postId)),
+    unlikePost: postId => dispatch(unlike_post(postId))
   };
 };
 
