@@ -21,6 +21,22 @@ export const add_post_fail = () => {
   };
 };
 
+export const delete_post = postId => {
+  return dispatch => {
+    axios
+      .delete(
+        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts/${postId}`
+      )
+      .then(res => {
+        dispatch({ type: actionTypes.DELETE_POST, payload: postId });
+      })
+      .catch(err => {
+        dispatch(error(err.response.data.text));
+        dispatch({ type: actionTypes.DELETE_POST_FAIL });
+      });
+  };
+};
+
 export const add_post = postData => {
   return dispatch => {
     dispatch(post_loading());

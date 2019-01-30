@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import classnames from "classnames";
+import { delete_post } from "../../store/actions/post";
 import { Link } from "react-router-dom";
 
 const PostItem = props => {
   const onDeletePost = postId => {
-    alert(postId);
+    props.deletePost(postId);
   };
   return (
     <div className="card card-body mb-3">
@@ -54,4 +55,13 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(PostItem);
+const mapDispatchToProps = dispatch => {
+  return {
+    deletePost: postId => dispatch(delete_post(postId))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostItem);

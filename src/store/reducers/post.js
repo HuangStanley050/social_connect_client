@@ -30,6 +30,15 @@ const reducer = (state = initialState, action) => {
         loading: false,
         posts: action.payload
       };
+    case actionTypes.DELETE_POST_FAIL:
+      return {
+        ...state
+      };
+    case actionTypes.DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter(post => post._id !== action.payload)
+      };
 
     default:
       return state;
