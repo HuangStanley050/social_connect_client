@@ -13,6 +13,7 @@ const reducer = (state = initialState, action) => {
         loading: true
       };
     case actionTypes.ADD_POST_FAIL:
+    case actionTypes.GET_POSTS_FAIL:
       return {
         ...state,
         loading: false
@@ -22,6 +23,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         posts: [action.payload, ...state.posts],
         loading: false
+      };
+    case actionTypes.GET_POSTS:
+      return {
+        ...state,
+        loading: false,
+        posts: action.payload
       };
 
     default:

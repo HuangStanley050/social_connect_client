@@ -40,3 +40,22 @@ export const add_post = postData => {
       });
   };
 };
+
+export const get_posts = () => {
+  return dispatch => {
+    dispatch(post_loading());
+    axios
+      .get(
+        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts"
+      )
+      .then(res => {
+        dispatch({ type: actionTypes.GET_POSTS, payload: res.data });
+        //console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err.response);
+        dispatch(error(err.response.data.text));
+        dispatch({ type: actionTypes.GET_POSTS_FAIL });
+      });
+  };
+};
