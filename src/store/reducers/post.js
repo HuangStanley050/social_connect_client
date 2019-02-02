@@ -30,6 +30,12 @@ const reducer = (state = initialState, action) => {
         loading: false,
         posts: action.payload
       };
+    case actionTypes.GET_POST:
+      return {
+        ...state,
+        loading: false,
+        post: action.payload
+      };
     case actionTypes.DELETE_POST_FAIL:
       return {
         ...state

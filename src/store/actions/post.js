@@ -98,3 +98,22 @@ export const get_posts = () => {
       });
   };
 };
+
+export const get_post = postId => {
+  return dispatch => {
+    dispatch(post_loading());
+    axios
+      .get(
+        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts/${postId}`
+      )
+      .then(res => {
+        dispatch({ type: actionTypes.GET_POST, payload: res.data });
+        //console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err.response);
+        dispatch(error(err.response.data.text));
+        dispatch({ type: actionTypes.GET_POST_FAIL });
+      });
+  };
+};
