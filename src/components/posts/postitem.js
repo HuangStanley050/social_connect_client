@@ -41,36 +41,45 @@ const PostItem = props => {
         </div>
         <div className="col-md-10">
           <p className="lead">{props.post.text}</p>
-          <button
-            onClick={() => onLike(props.post._id)}
-            type="button"
-            className="btn btn-light mr-1"
-          >
-            <i
-              className={classnames("fas fa-thumbs-up", {
-                "text-info": findUserLikes(props.post.likes)
-              })}
-            />
-            <span className="badge badge-light">{props.post.likes.length}</span>
-          </button>
-          <button
-            onClick={() => unLike(props.post._id)}
-            type="button"
-            className="btn btn-light mr-1"
-          >
-            <i className="text-secondary fas fa-thumbs-down" />
-          </button>
-          <Link to={`/post/${props.post._id}`} className="btn btn-info mr-1">
-            Comments
-          </Link>
-          {props.auth.user.id === props.post.user ? (
-            <button
-              onClick={() => onDeletePost(props.post._id)}
-              type="button"
-              className="btn btn-danger mr-1"
-            >
-              <i className="fas fa-times" />
-            </button>
+          {props.showActions ? (
+            <React.Fragment>
+              <button
+                onClick={() => onLike(props.post._id)}
+                type="button"
+                className="btn btn-light mr-1"
+              >
+                <i
+                  className={classnames("fas fa-thumbs-up", {
+                    "text-info": findUserLikes(props.post.likes)
+                  })}
+                />
+                <span className="badge badge-light">
+                  {props.post.likes.length}
+                </span>
+              </button>
+              <button
+                onClick={() => unLike(props.post._id)}
+                type="button"
+                className="btn btn-light mr-1"
+              >
+                <i className="text-secondary fas fa-thumbs-down" />
+              </button>
+              <Link
+                to={`/post/${props.post._id}`}
+                className="btn btn-primary mr-1"
+              >
+                Comments
+              </Link>
+              {props.auth.user.id === props.post.user ? (
+                <button
+                  onClick={() => onDeletePost(props.post._id)}
+                  type="button"
+                  className="btn btn-danger mr-1"
+                >
+                  <i className="fas fa-times" />
+                </button>
+              ) : null}
+            </React.Fragment>
           ) : null}
         </div>
       </div>
