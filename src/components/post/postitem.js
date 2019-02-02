@@ -14,6 +14,17 @@ const PostItem = props => {
   const unLike = postId => {
     props.unlikePost(postId);
   };
+
+  const findUserLikes = likes => {
+    const { auth } = props.auth;
+
+    if (likes.length === 0) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   return (
     <div className="card card-body mb-3">
       <div className="row">
@@ -35,7 +46,11 @@ const PostItem = props => {
             type="button"
             className="btn btn-light mr-1"
           >
-            <i className="text-info fas fa-thumbs-up" />
+            <i
+              className={classnames("fas fa-thumbs-up", {
+                "text-info": findUserLikes(props.post.likes)
+              })}
+            />
             <span className="badge badge-light">{props.post.likes.length}</span>
           </button>
           <button
