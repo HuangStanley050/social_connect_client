@@ -138,3 +138,20 @@ export const add_comment = (postId, comment) => {
       });
   };
 };
+
+export const delete_comment = (postId, commentId) => {
+  return dispatch => {
+    //console.log(postId, commentId);
+    axios
+      .delete(
+        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts/comment/${postId}/${commentId}`
+      )
+      .then(res => {
+        dispatch({ type: actionTypes.GET_POST, payload: res.data });
+      })
+      .catch(err => {
+        console.log(err.response);
+        dispatch(error(err.response.data.text));
+      });
+  };
+};

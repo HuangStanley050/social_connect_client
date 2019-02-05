@@ -1,7 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import { delete_comment } from "../../store/actions/post";
 class CommentItem extends React.Component {
+  onDeleteComment = (postId, commentId) => {
+    this.props.delete(postId, commentId);
+  };
+
   render() {
     const { comment, postId, auth } = this.props;
     return (
@@ -20,6 +24,15 @@ class CommentItem extends React.Component {
           </div>
           <div className="col-md-10">
             <p className="lead">{comment.text}</p>
+            {comment.user === auth.user.id ? (
+              <button
+                onClick={() => this.onDeleteComment(postId, comment._id)}
+                type="button"
+                className="btn btn-danger mr-1"
+              >
+                <i className="fas fa-times" />
+              </button>
+            ) : null}
           </div>
         </div>
       </div>
@@ -31,4 +44,13 @@ const mapStateToProps = state => {
   return { auth: state.auth, post: state.post };
 };
 
-export default connect(mapStateToProps)(CommentItem);
+const mapDispatchToProps = dispatch => {
+  return {
+    delete: (postId, commentId) => dispatch(delete_comment(postId, commentId))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CommentItem);
