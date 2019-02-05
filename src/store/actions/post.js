@@ -117,3 +117,24 @@ export const get_post = postId => {
       });
   };
 };
+
+export const add_comment = (postId, comment) => {
+  return dispatch => {
+    // console.log("this is the comment " + comment.text + postId);
+    //dispatch(post_loading());
+    axios
+      .post(
+        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts/comment/${postId}`,
+        comment
+      )
+      .then(res => {
+        dispatch({ type: actionTypes.GET_POST, payload: res.data });
+        //console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err.response);
+        dispatch(error(err.response.data.text));
+        dispatch(add_post_fail());
+      });
+  };
+};

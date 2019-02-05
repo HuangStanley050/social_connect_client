@@ -75,3 +75,6 @@ export const LIKE_POST_FAIL = "LIKE_POST_FAIL";
 
 export const UNLIKE_POST = "UNLIKE_POST";
 export const UNLIKE_POST_FAIL = "UNLIKE_POST_FAIL";
+
+export const ADD_COMMENT = "ADD_COMMENT";
+export const ADD_COMMENT_FAIL = "ADD_COMMENT_FAIL";
