@@ -70,6 +70,7 @@ export const add_post = postData => {
       )
       .then(res => {
         dispatch(add_post_success(res.data));
+        dispatch({ type: actionTypes.CLEAR_ERROR });
         console.log(res.data);
       })
       .catch(err => {
@@ -129,6 +130,7 @@ export const add_comment = (postId, comment) => {
       )
       .then(res => {
         dispatch({ type: actionTypes.GET_POST, payload: res.data });
+        dispatch({ type: actionTypes.CLEAR_ERROR });
         //console.log(res.data);
       })
       .catch(err => {
