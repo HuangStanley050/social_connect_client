@@ -30,10 +30,7 @@ export const register = newUser => {
     dispatch(registerStart());
     //console.log(newUser);
     axios
-      .post(
-        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/users/register",
-        newUser
-      )
+      .post("https://connect-social.herokuapp.com/api/users/register", newUser)
       .then(res => {
         dispatch(registerSuccess());
         dispatch(clear_error());
@@ -70,10 +67,7 @@ export const login = userData => {
     //console.log(userData);
     dispatch(login_start());
     axios
-      .post(
-        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/users/login",
-        userData
-      )
+      .post("https://connect-social.herokuapp.com/api/users/login", userData)
       .then(res => {
         const { token } = res.data;
         localStorage.setItem("jwtToken", token);
