@@ -7,10 +7,7 @@ export const add_experience = (data, history) => {
     dispatch({ type: actionTypes.ADD_EXPERIENCE_START });
     //console.log(data);
     axios
-      .post(
-        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile/experience",
-        data
-      )
+      .post("https://connect-social.herokuapp.com/api/profile/experience", data)
       .then(res => {
         //console.log(res.data);
         dispatch({
@@ -33,7 +30,7 @@ export const delete_experience = expID => {
     dispatch({ type: actionTypes.DELETE_EXPERIENCE_START });
     axios
       .delete(
-        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile/experience/${expID}`
+        `https://connect-social.herokuapp.com/api/profile/experience/${expID}`
       )
       .then(res => {
         //console.log(res);
