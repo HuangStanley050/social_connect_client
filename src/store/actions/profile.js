@@ -62,6 +62,7 @@ export const create_profile = (data, history) => {
       .post("https://connect-social.herokuapp.com/api/profile", data)
       .then(res => {
         dispatch(create_profile_success(res.data));
+        dispatch({ type: actionTypes.CLEAR_ERROR });
         //console.log(history);
         history.push("/dashboard");
       })
