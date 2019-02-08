@@ -16,7 +16,7 @@ class CommentItem extends React.Component {
               <img
                 className="rounded-circle d-none d-md-block"
                 src={comment.avatar}
-                alt=""
+                alt="this is a profile display"
               />
             </a>
             <br />

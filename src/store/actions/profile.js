@@ -59,10 +59,7 @@ export const create_profile = (data, history) => {
   return dispatch => {
     dispatch(create_profile_start());
     axios
-      .post(
-        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile",
-        data
-      )
+      .post("https://connect-social.herokuapp.com/api/profile", data)
       .then(res => {
         dispatch(create_profile_success(res.data));
         //console.log(history);
@@ -81,9 +78,7 @@ export const fetch_profiles = () => {
   return dispatch => {
     dispatch({ type: actionTypes.GET_PROFILES_START });
     axios
-      .get(
-        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile/all"
-      )
+      .get("https://connect-social.herokuapp.com/api/profile/all")
       .then(res => {
         dispatch({
           type: actionTypes.GET_PROFILES_SUCCESS,
@@ -103,9 +98,7 @@ export const fetch_profile = () => {
   return dispatch => {
     dispatch(fetch_profile_start());
     axios
-      .get(
-        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile"
-      )
+      .get("https://connect-social.herokuapp.com/api/profile")
       .then(res => {
         dispatch(fetch_profile_success(res.data));
       })
@@ -128,9 +121,7 @@ export const delete_account = () => {
     if (window.confirm("Are you sure? This can't be undone.")) {
       dispatch({ type: actionTypes.DELETE_PROFILE_START });
       axios
-        .delete(
-          "https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile"
-        )
+        .delete("https://connect-social.herokuapp.com/api/profile")
         .then(res => {
           console.log(res);
           localStorage.removeItem("jwtToken");
@@ -152,7 +143,7 @@ export const fetch_profile_handle = profileId => {
     dispatch(fetch_profile_start());
     axios
       .get(
-        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile/handle/${profileId}`
+        `https://connect-social.herokuapp.com/api/profile/handle/${profileId}`
       )
       .then(res => {
         dispatch(fetch_profile_success(res.data));
