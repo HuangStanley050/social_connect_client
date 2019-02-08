@@ -6,10 +6,7 @@ export const add_education = (data, history) => {
   return dispatch => {
     dispatch({ type: actionTypes.ADD_EDUCATION_START });
     axios
-      .post(
-        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile/education",
-        data
-      )
+      .post("https://connect-social.herokuapp.com/api/profile/education", data)
       .then(res => {
         //console.log(res);
         dispatch({
@@ -31,7 +28,7 @@ export const delete_education = eduID => {
     dispatch({ type: actionTypes.DELETE_EDUCATION_START });
     axios
       .delete(
-        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/profile/education/${eduID}`
+        `https://connect-social.herokuapp.com/api/profile/education/${eduID}`
       )
       .then(res => {
         dispatch({
