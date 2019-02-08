@@ -24,9 +24,7 @@ export const add_post_fail = () => {
 export const delete_post = postId => {
   return dispatch => {
     axios
-      .delete(
-        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts/${postId}`
-      )
+      .delete(`https://connect-social.herokuapp.com/api/posts/${postId}`)
       .then(res => {
         dispatch({ type: actionTypes.DELETE_POST, payload: postId });
       })
@@ -41,9 +39,7 @@ export const like_post = postId => {
   return dispatch => {
     console.log(postId);
     axios
-      .post(
-        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts/like/${postId}`
-      )
+      .post(`https://connect-social.herokuapp.com/api/posts/like/${postId}`)
       .then(res => dispatch(get_posts()))
       .catch(err => dispatch(error(err.response.data.text)));
   };
@@ -52,9 +48,7 @@ export const like_post = postId => {
 export const unlike_post = postId => {
   return dispatch => {
     axios
-      .post(
-        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts/unlike/${postId}`
-      )
+      .post(`https://connect-social.herokuapp.com/api/posts/unlike/${postId}`)
       .then(res => dispatch(get_posts()))
       .catch(err => dispatch(error(err.response.data.text)));
   };
@@ -64,10 +58,7 @@ export const add_post = postData => {
   return dispatch => {
     dispatch(post_loading());
     axios
-      .post(
-        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts",
-        postData
-      )
+      .post("https://connect-social.herokuapp.com/api/posts", postData)
       .then(res => {
         dispatch(add_post_success(res.data));
         dispatch({ type: actionTypes.CLEAR_ERROR });
@@ -85,9 +76,7 @@ export const get_posts = () => {
   return dispatch => {
     dispatch(post_loading());
     axios
-      .get(
-        "https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts"
-      )
+      .get("https://connect-social.herokuapp.com/api/posts")
       .then(res => {
         dispatch({ type: actionTypes.GET_POSTS, payload: res.data });
         //console.log(res.data);
@@ -104,9 +93,7 @@ export const get_post = postId => {
   return dispatch => {
     dispatch(post_loading());
     axios
-      .get(
-        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts/${postId}`
-      )
+      .get(`https://connect-social.herokuapp.com/api/posts/${postId}`)
       .then(res => {
         dispatch({ type: actionTypes.GET_POST, payload: res.data });
         //console.log(res.data);
@@ -125,7 +112,7 @@ export const add_comment = (postId, comment) => {
     //dispatch(post_loading());
     axios
       .post(
-        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts/comment/${postId}`,
+        `https://connect-social.herokuapp.com/api/posts/comment/${postId}`,
         comment
       )
       .then(res => {
@@ -146,7 +133,7 @@ export const delete_comment = (postId, commentId) => {
     //console.log(postId, commentId);
     axios
       .delete(
-        `https://github-site-practice-infamousgodhand.c9users.io:8081/api/posts/comment/${postId}/${commentId}`
+        `https://connect-social.herokuapp.com/api/posts/comment/${postId}/${commentId}`
       )
       .then(res => {
         dispatch({ type: actionTypes.GET_POST, payload: res.data });
